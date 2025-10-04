@@ -1,0 +1,22 @@
+{
+  "name": "pup/magicwands",
+  "description": "magicwands for pmmp",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "pup"
+    }
+  ],
+  "require": {
+    "pocketmine/pocketmine-mp": "^5.35.0",
+    "pup/placeholderapi": "1.1.0",
+    "paroxity/commando": "3.2.1",
+    "muqsit/simple-packet-handler": "0.1.5"
+  },
+  "autoload": {
+    "classmap": [
+      "src"
+    ]
+  }
+}

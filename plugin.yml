@@ -1,0 +1,11 @@
+name: MagicWands
+main: pup\magicwands\Main
+version: 1.0.0
+api: 5.0.0
+author: pupggers
+description: Magic Wands!
+
+permissions:
+  magicwands.command.wand:
+    description: Allows using the /wand command
+    default: op
