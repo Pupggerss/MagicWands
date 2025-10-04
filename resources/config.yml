@@ -1,2 +1,287 @@
-# DO NOT CHANGE VERSION!
+# MagicWands Configuration
+# Simple example configuration with basic spells
 version: "1.0.0"
+
+wands:
+  # ========================================
+  # Fireball Wand - Projectile Spell
+  # ========================================
+  fireball:
+    name: "Fireball Wand"
+    description: "Launch a blazing fireball"
+    cooldown: 3              # 3 seconds cooldown
+    range: 30.0              # 30 block range
+
+    spell:
+      type: "projectile"
+      speed: 1.0             # Projectile speed
+      damage: 5.0            # Damage on hit
+      fire_ticks: 100        # 5 seconds of fire
+
+
+      success_message: "{red}Fireball launched!"
+
+      particle: "flame"
+      sound:
+        name: "mob.blaze.shoot"
+        volume: 1.5
+        pitch: 1.0
+
+  # ========================================
+  # Healing Wand - Target Spell
+  # ========================================
+  healing:
+    name: "Healing Wand"
+    description: "Restore health to allies"
+    cooldown: 8
+    range: 20.0
+
+    spell:
+      type: "target"
+      heal_amount: 10.0      # Heals 5 hearts
+      can_self_cast: true    # Can heal yourself
+
+
+      self_cast_message: "{green}You healed yourself!"
+      caster_message: "{green}You healed {target}!"
+      target_message: "{green}You were healed by {caster}!"
+      no_target_message: "{red}No valid target found!"
+
+      particle: "heart"
+      animation_type: "circle"
+      animation_duration: 20
+      particle_count: 30
+      tick_interval: 2
+      radius: 2.0
+
+      sound:
+        name: "random.orb"
+        volume: 1.0
+        pitch: 1.2
+
+  # ========================================
+  # Lightning Strike - AOE Spell
+  # ========================================
+  lightning:
+    name: "Lightning Strike Wand"
+    description: "Call down lightning from the sky"
+    cooldown: 10
+    range: 40.0
+
+    spell:
+      type: "aoe"
+      damage: 12.0
+      radius: 6.0            # 6 block radius
+      fire_ticks: 60         # 3 seconds of fire
+      affect_caster: false   # Don't damage yourself
+
+      spawn_lightning: true  # Visual lightning effect, Lightning hits all entities in the area!
+      lightning_count: 3     # 3 lightning bolts
+
+      effects:
+        - name: "slowness"
+          duration: 8
+          amplifier: 1
+
+      success_message: "{yellow}Lightning struck {count} enemies!"
+      affected_message: "{yellow}You were struck by lightning from {caster}!"
+      no_target_message: "{red}No valid target location!"
+
+      particle:
+        type: "dust"
+        color: [ 255, 255, 100 ]  # Yellow
+      animation_type: "pulse"
+      animation_duration: 25
+      particle_count: 50
+      tick_interval: 1
+      radius: 6.0
+
+      sound:
+        name: "ambient.weather.lightning.impact"
+        volume: 2.0
+        pitch: 1.0
+
+  # ========================================
+  # Teleport Wand - Teleport Spell
+  # ========================================
+  teleport:
+    name: "Teleport Wand"
+    description: "Teleport to target location"
+    cooldown: 5
+    range: 25.0
+
+    spell:
+      type: "teleport"
+
+      success_message: "{aqua}Teleported successfully!"
+      no_target_message: "{red}No valid teleport location!"
+      unsafe_message: "{red}That location is not safe!"
+
+      particle: "enderman_teleport"
+      animation_type: "pulse"
+      animation_duration: 15
+      particle_count: 40
+      tick_interval: 2
+      radius: 2.0
+
+      sound:
+        name: "mob.endermen.portal"
+        volume: 1.5
+        pitch: 1.0
+
+  # ========================================
+  # Poison Cloud - AOE Spell
+  # ========================================
+  poison:
+    name: "Poison Cloud Wand"
+    description: "Create a toxic poison cloud"
+    cooldown: 12
+    range: 30.0
+
+    spell:
+      type: "aoe"
+      damage: 4.0
+      radius: 8.0
+      fire_ticks: 0
+      affect_caster: false
+
+      effects:
+        - name: "poison"
+          duration: 15
+          amplifier: 2       # Level III
+        - name: "nausea"
+          duration: 10
+          amplifier: 0
+
+      success_message: "{dark_green}Poison cloud affected {count} enemies!"
+      affected_message: "{dark_green}You are poisoned by {caster}!"
+      no_target_message: "{red}No valid location!"
+
+      particle:
+        type: "potion"
+        color: [ 34, 139, 34 ]   # Forest green
+      animation_type: "circle"
+      animation_duration: 30
+      particle_count: 60
+      tick_interval: 1
+      radius: 8.0
+
+      sound:
+        name: "random.fizz"
+        volume: 1.5
+        pitch: 0.8
+
+  # ========================================
+  # Ice Blast - Projectile Spell
+  # ========================================
+  ice_blast:
+    name: "Ice Blast Wand"
+    description: "Fire a freezing ice projectile"
+    cooldown: 4
+    range: 35.0
+
+    spell:
+      type: "projectile"
+      speed: 1.5
+      damage: 6.0
+      fire_ticks: 0
+
+      effects:
+        - name: "slowness"
+          duration: 20
+          amplifier: 3       # Level IV
+        - name: "mining_fatigue"
+          duration: 20
+          amplifier: 2
+
+      success_message: "{aqua}Ice blast launched!"
+
+      particle:
+        type: "dust"
+        color: [ 173, 216, 230 ]  # Light blue
+
+      sound:
+        name: "random.glass"
+        volume: 1.2
+        pitch: 1.5
+
+  # ========================================
+  # Shield Wand - Target Spell (Self-buff)
+  # ========================================
+  shield:
+    name: "Shield Wand"
+    description: "Grant protective buffs"
+    cooldown: 15
+    range: 20.0
+
+    spell:
+      type: "target"
+      heal_amount: 4.0
+      can_self_cast: true
+
+      effects:
+        - name: "resistance"
+          duration: 20
+          amplifier: 2       # Level III
+        - name: "absorption"
+          duration: 15
+          amplifier: 1       # 2 extra hearts
+        - name: "regeneration"
+          duration: 10
+          amplifier: 1
+
+      self_cast_message: "{gold}Shield activated!"
+      caster_message: "{gold}You shielded {target}!"
+      target_message: "{gold}You received a shield from {caster}!"
+      no_target_message: "{red}No valid target!"
+
+      particle:
+        type: "dust"
+        color: [ 218, 165, 32 ]  # Goldenrod
+      animation_type: "spiral"
+      animation_duration: 25
+      particle_count: 50
+      tick_interval: 1
+      radius: 3.0
+
+      sound:
+        name: "random.levelup"
+        volume: 1.0
+        pitch: 1.0
+
+  # ========================================
+  # Explosion - AOE Spell
+  # ========================================
+  explosion:
+    name: "Explosion Wand"
+    description: "Create a powerful explosion"
+    cooldown: 8
+    range: 25.0
+
+    spell:
+      type: "aoe"
+      damage: 15.0
+      radius: 5.0
+      fire_ticks: 40
+      affect_caster: false
+
+      effects:
+        - name: "levitation"
+          duration: 30
+          amplifier: 1       # Launch enemies up
+
+      success_message: "{red}Explosion hit {count} enemies!"
+      affected_message: "{red}You were caught in an explosion from {caster}!"
+      no_target_message: "{red}No valid target!"
+
+      particle: "explode"
+      animation_type: "pulse"
+      animation_duration: 20
+      particle_count: 80
+      tick_interval: 1
+      radius: 5.0
+
+      sound:
+        name: "random.explode"
+        volume: 2.5
+        pitch: 1.0
