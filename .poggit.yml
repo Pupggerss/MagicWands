@@ -5,4 +5,5 @@ branches:
 projects:
   MagicWands:
     path: ""
+    icon: "icon.png"
 ...

@@ -17,7 +17,6 @@ final class WandCommand extends BaseCommand
     {
         parent::__construct($plugin, "wand", "Give a wand to a player", ["/wands"]);
         $this->setPermission("magicwands.command.wand");
-
     }
 
     /**

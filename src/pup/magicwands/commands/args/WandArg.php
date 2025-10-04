@@ -33,7 +33,7 @@ final class WandArg extends StringEnumArgument
                  $registeredName)
         {
             $registeredLower = strtolower($registeredName);
-            if ($registeredLower === $wandName || str_contains($registeredLower, $wandName)) {
+            if ($registeredLower === $wandName) {
                 return $registeredName;
             }
         }
